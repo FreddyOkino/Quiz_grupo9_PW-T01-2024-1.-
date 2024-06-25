@@ -4,8 +4,7 @@ import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { logout } from '../redux/authSlice';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import backgroundImage from '/home/freddy/Área de Trabalho/Engenharia_de_Software/progWeb/trabalhofront/quiz/src/views/background.jpg'
-
+import backgroundImage from '/home/freddy/Área de Trabalho/EngSoft/ProgWeb/frontQuizz/src/views/background.jpg'
 export function Home() {
   const containerStyle = {
     backgroundImage: `url(${backgroundImage})`,

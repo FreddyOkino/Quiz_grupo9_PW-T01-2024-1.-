@@ -11,8 +11,7 @@ import { showSnackbar } from "../redux/snackbarSlice";
 import { login } from "../redux/authSlice";
 import axios from "axios";
 import { useDispatch } from 'react-redux';
-import backgroundImage from '/home/freddy/Área de Trabalho/Engenharia_de_Software/progWeb/trabalhofront/quiz/src/views/background.jpg'
-
+import backgroundImage from '/home/freddy/Área de Trabalho/EngSoft/ProgWeb/frontQuizz/src/views/background.jpg'
 
 export function Login() {
   const containerStyle = {
@@ -31,11 +30,21 @@ export function Login() {
     dispatch(
       showSnackbar({
         variant: "danger",
-        title: 'Um erro ocorreu',
-        message
+        title: "Um erro ocorreu",
+        message,
       })
-    )
-    
+    );
+
+    // Esconder o snackbar depois de 2 segundos
+    setTimeout(() => {
+      dispatch(
+        showSnackbar({
+          variant: "",
+          title: "",
+          message: "",
+        })
+      );
+    }, 2000); // 2000 milissegundos = 2 segundos
   };
 
 
@@ -79,7 +88,7 @@ export function Login() {
                       src="https://cdn.pixabay.com/photo/2020/07/11/12/31/idea-5393862_640.png"
                     />
                   </Col>
-                  <Col style={{ textAlign: "center" , color:"white"}} xs={10}>
+                  <Col style={{ textAlign: "center" , color:"white"}}>
                     <h1>BrainUp</h1>
                   </Col>
                 </Row>

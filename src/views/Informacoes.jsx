@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { Container, Row, Col, Card, Button, Table } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import backgroundImage from "/home/freddy/Área de Trabalho/Engenharia_de_Software/progWeb/trabalhofront/quiz/src/views/background.jpg";
+import backgroundImage from '/home/freddy/Área de Trabalho/EngSoft/ProgWeb/frontQuizz/src/views/background.jpg'
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from 'axios'
@@ -20,6 +20,20 @@ export function Informar() {
   const[usePerfil]=useState(user.perfil)
   const[atulaPontuacao,setPontuacao]=useState(0)
   const[atualRespondidos, setQuestoes]=useState(0)
+  const [melhoresPerfis, setMelhoresPerfis] = useState([]);
+  useEffect(() => {
+    async function carregarMelhoresPerfis() {
+      try {
+        const response = await axios.get(
+          "https://backquizz.onrender.com/perfil/melhores"
+        );
+        setMelhoresPerfis(response.data);
+      } catch (error) {
+        console.error("Erro ao carregar os melhores perfis:", error);
+      }
+    }
+    carregarMelhoresPerfis();
+  }, []);
   useEffect(()=>{
     async function achardados(){
         try {
@@ -92,6 +106,35 @@ export function Informar() {
                   />
                 )}
               </Card.Text>
+              <Card.Title
+                className="text-center mb-4"
+                style={{ color: "white", fontWeight: "bolder" }}
+              >
+              RANK DOS MELHORES
+              </Card.Title>
+              <Table striped bordered hover variant="light">
+                <thead>
+                  <tr>
+                    <th>Posição</th>
+                    <th>Nome</th>
+                    <th>Pontuação</th>
+                    <th>Questões Respondidas</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {melhoresPerfis.slice(0, 5).map((perfil, index) => (
+                    <tr key={perfil._id}>
+                      <td>{index + 1}</td>
+                      <td>{perfil.nome}</td>
+                      <td>{perfil.pontuacao}</td>
+                      <td>{perfil.respondido}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+
+
+
               <Col style={{ textAlign: "center", margin: "5px" }}>
                 <Button
                   variant="success"

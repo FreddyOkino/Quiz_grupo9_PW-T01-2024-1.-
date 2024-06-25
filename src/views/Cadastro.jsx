@@ -9,7 +9,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { criarConta } from "../services/CadastroService";
 import { useNavigate } from "react-router-dom";
-import backgroundImage from '/home/freddy/Área de Trabalho/Engenharia_de_Software/progWeb/trabalhofront/quiz/src/views/background.jpg'
+import backgroundImage from '/home/freddy/Área de Trabalho/EngSoft/ProgWeb/frontQuizz/src/views/background.jpg'
 import Image from 'react-bootstrap/Image';
 export function Cadastro() {
   const containerStyle = {
